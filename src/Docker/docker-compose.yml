@@ -1,0 +1,12 @@
+version: '3'
+services:
+  java:
+    image: spring-java
+    build: .
+    ports: 
+      - "8383:8383"
+    container_name: lims-api
+    restart: always
+
+
+

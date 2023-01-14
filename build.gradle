@@ -1,0 +1,56 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.3.5.RELEASE")
+    }
+}
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group 'io.albot'
+
+
+
+repositories {
+    mavenCentral()
+}
+configurations {
+    providedRuntime
+}
+
+
+dependencies {
+    implementation 'org.jetbrains:annotations:20.1.0'
+    compileOnly 'org.projectlombok:lombok:1.18.16'
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+    testCompileOnly 'org.projectlombok:lombok:1.18.16'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
+    compile "org.springframework.boot:spring-boot-starter-web:2.3.5.RELEASE"
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
+    compile "joda-time:joda-time:2.8.1"
+    compile "org.modelmapper:modelmapper:2.3.2"
+    compile "io.springfox:springfox-swagger2:2.9.2"
+    compile "io.springfox:springfox-swagger-ui:2.9.2"
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.3.5.RELEASE'
+    compile "io.jsonwebtoken:jjwt:0.9.1"
+    compile "com.vladmihalcea:hibernate-types-52:2.9.10"
+    compile "com.amazonaws:aws-java-sdk-sns:1.11.878"
+    compile "com.amazonaws:aws-java-sdk:1.11.486"
+    compile "org.apache.velocity:velocity:1.7"
+    compile "org.apache.velocity:velocity-tools:2.0"
+    compile "com.itextpdf:itextpdf:5.5.9"
+    compile "com.itextpdf.tool:xmlworker:5.5.10"
+    compile "com.itextpdf:html2pdf:2.1.6"
+    compile "com.itextpdf:itext7-core:7.1.0" 
+    compile group: 'org.json', name: 'json', version: '20201115'
+    implementation group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.4'
+    implementation 'org.springframework.boot:spring-boot-starter-mail:2.3.6.RELEASE'
+
+}
+
+test {
+    useJUnitPlatform()
+}

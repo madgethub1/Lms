@@ -1,0 +1,2445 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  
+	<script>
+		function myFunction() {
+			const invoice = this.document.getElementById("invoice");
+			console.log(invoice);
+			html2pdf().from(invoice).save();
+		}
+		</script>
+		
+		<script>
+		function screenShot() {
+			html2canvas(document.querySelector("#screenshot")).then(canvas => {
+			document.querySelector("#newCanvas").appendChild(canvas);
+			});
+		}
+		</script>
+		
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" integrity="sha512-s/XK4vYVXTGeUSv4bRPOuxSDmDlTedEpMEcAQk0t/FMd9V6ft8iXdwSBxV0eD60c6w/tjotSlKu9J2AAW1ckTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js" integrity="sha512-jzL0FvPiDtXef2o2XZJWgaEpVAihqquZT/tT89qCVaxVuHwJ/1DFcJ+8TBMXplSJXE8gLbVAUv+Lj20qHpGx+A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doc</title>
+    <style>
+      /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+      html {
+        line-height: 1.15; /* 1 */
+        -webkit-text-size-adjust: 100%; /* 2 */
+      }
+
+      /* Sections
+   ========================================================================== */
+
+      /**
+ * Remove the margin in all browsers.
+ */
+
+      body {
+        margin: 0;
+      }
+
+      /**
+ * Render the `main` element consistently in IE.
+ */
+
+      main {
+        display: block;
+      }
+
+      /**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+      h1 {
+        font-size: 2em;
+        margin: 0.67em 0;
+      }
+
+      /* Grouping content
+   ========================================================================== */
+
+      /**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+      hr {
+        box-sizing: content-box; /* 1 */
+        height: 0; /* 1 */
+        overflow: visible; /* 2 */
+      }
+
+      /**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+      pre {
+        font-family: monospace, monospace; /* 1 */
+        font-size: 1em; /* 2 */
+      }
+
+      /* Text-level semantics
+   ========================================================================== */
+
+      /**
+ * Remove the gray background on active links in IE 10.
+ */
+
+      a {
+        background-color: transparent;
+      }
+
+      /**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+      abbr[title] {
+        border-bottom: none; /* 1 */
+        text-decoration: underline; /* 2 */
+        text-decoration: underline dotted; /* 2 */
+      }
+
+      /**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+      b,
+      strong {
+        font-weight: bolder;
+      }
+
+      /**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+      code,
+      kbd,
+      samp {
+        font-family: monospace, monospace; /* 1 */
+        font-size: 1em; /* 2 */
+      }
+
+      /**
+ * Add the correct font size in all browsers.
+ */
+
+      small {
+        font-size: 80%;
+      }
+
+      /**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+      sub,
+      sup {
+        font-size: 75%;
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+      }
+
+      sub {
+        bottom: -0.25em;
+      }
+
+      sup {
+        top: -0.5em;
+      }
+
+      /* Embedded content
+   ========================================================================== */
+
+      /**
+ * Remove the border on images inside links in IE 10.
+ */
+
+      img {
+        border-style: none;
+      }
+
+      /* Forms
+   ========================================================================== */
+
+      /**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        font-family: inherit; /* 1 */
+        font-size: 100%; /* 1 */
+        line-height: 1.15; /* 1 */
+        margin: 0; /* 2 */
+      }
+
+      /**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+      button,
+      input {
+        /* 1 */
+        overflow: visible;
+      }
+
+      /**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+      button,
+      select {
+        /* 1 */
+        text-transform: none;
+      }
+
+      /**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+      button,
+      [type="button"],
+      [type="reset"],
+      [type="submit"] {
+        -webkit-appearance: button;
+      }
+
+      /**
+ * Remove the inner border and padding in Firefox.
+ */
+      /* 
+      button::-moz-focus-inner,
+      [type="button"]::-moz-focus-inner,
+      [type="reset"]::-moz-focus-inner,
+      [type="submit"]::-moz-focus-inner {
+        border-style: none;
+        padding: 0;
+      } */
+
+      /**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+      /* button:-moz-focusring,
+      [type="button"]:-moz-focusring,
+      [type="reset"]:-moz-focusring,
+      [type="submit"]:-moz-focusring {
+        outline: 1px dotted ButtonText;
+      } */
+
+      /**
+ * Correct the padding in Firefox.
+ */
+
+      fieldset {
+        padding: 0.35em 0.75em 0.625em;
+      }
+
+      /**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+      legend {
+        box-sizing: border-box; /* 1 */
+        color: inherit; /* 2 */
+        display: table; /* 1 */
+        max-width: 100%; /* 1 */
+        padding: 0; /* 3 */
+        white-space: normal; /* 1 */
+      }
+
+      /**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+      progress {
+        vertical-align: baseline;
+      }
+
+      /**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+      textarea {
+        overflow: auto;
+      }
+
+      /**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+      [type="checkbox"],
+      [type="radio"] {
+        box-sizing: border-box; /* 1 */
+        padding: 0; /* 2 */
+      }
+
+      /**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+      [type="number"]::-webkit-inner-spin-button,
+      [type="number"]::-webkit-outer-spin-button {
+        height: auto;
+      }
+
+      /**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+      [type="search"] {
+        -webkit-appearance: textfield; /* 1 */
+        outline-offset: -2px; /* 2 */
+      }
+
+      /**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+      [type="search"]::-webkit-search-decoration {
+        -webkit-appearance: none;
+      }
+
+      /**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+      ::-webkit-file-upload-button {
+        -webkit-appearance: button; /* 1 */
+        font: inherit; /* 2 */
+      }
+
+      /* Interactive
+   ========================================================================== */
+
+      /*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+
+      details {
+        display: block;
+      }
+
+      /*
+ * Add the correct display in all browsers.
+ */
+
+      summary {
+        display: list-item;
+      }
+
+      /* Misc
+   ========================================================================== */
+
+      /**
+ * Add the correct display in IE 10+.
+ */
+
+      template {
+        display: none;
+      }
+
+      /**
+ * Add the correct display in IE 10.
+ */
+
+      [hidden] {
+        display: none;
+      }
+
+      /* Custom CSS Starts */
+
+      body * {
+        margin: 0;
+      }
+      body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 0.7rem;
+      }
+      section {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+      .blue-line {
+        border-top: 10px solid #add8e6;
+      }
+      .second p {
+        margin: 0;
+        padding: 0.1rem;
+      }
+
+      .graph1 {
+        height: 2rem;
+      }
+
+      .graph1 .b1 {
+        background-color: #96d44c;
+      }
+
+      .graph1 .b2 {
+        background-color: #b8ee76;
+      }
+
+      .graph1 .b3 {
+        background-color: #e5ec6c;
+      }
+
+      .graph1 .b4 {
+        background-color: #d4d4cf;
+      }
+
+      .graph1 .b5 {
+        background-color: #b2b2b1;
+      }
+
+      .graph1 .b6 {
+        background-color: #999999;
+      }
+
+      .graph1 .b7 {
+        background-color: #878787;
+      }
+
+      .graph1 .b8 {
+        background-color: #6d6d6d;
+      }
+
+      .special-text {
+        color: #afdcec;
+      }
+
+      .upper {
+        height: 0.7rem;
+        box-shadow: inset 0px -5px 0px 0px #add8e6;
+      }
+
+      .lower {
+        height: 0.7rem;
+        box-shadow: inset 0px 5px 0px 0px #add8e6;
+      }
+
+      .graph2 .upper {
+        height: 1rem;
+      }
+
+      .graph2 .lower {
+        height: 1rem;
+      }
+
+      /*! Basscss | http://basscss.com | MIT License */
+      .h1 {
+        font-size: 2rem;
+      }
+      .h2 {
+        font-size: 1.5rem;
+      }
+      .h3 {
+        font-size: 1.25rem;
+      }
+      .h4 {
+        font-size: 1rem;
+      }
+      .h5 {
+        font-size: 0.875rem;
+      }
+      .h6 {
+        font-size: 0.75rem;
+      }
+      .font-family-inherit {
+        font-family: inherit;
+      }
+      .font-size-inherit {
+        font-size: inherit;
+      }
+      .text-decoration-none {
+        text-decoration: none;
+      }
+      .bold {
+        font-weight: 700;
+      }
+      .regular {
+        font-weight: 400;
+      }
+      .italic {
+        font-style: italic;
+      }
+      .caps {
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+      }
+      .left-align {
+        text-align: left;
+      }
+      .center {
+        text-align: center;
+      }
+      .right-align {
+        text-align: right;
+      }
+      .justify {
+        text-align: justify;
+      }
+      .nowrap {
+        white-space: nowrap;
+      }
+      .break-word {
+        word-wrap: break-word;
+      }
+      .line-height-1 {
+        line-height: 1;
+      }
+      .line-height-2 {
+        line-height: 1.125;
+      }
+      .line-height-3 {
+        line-height: 1.25;
+      }
+      .line-height-4 {
+        line-height: 1.5;
+      }
+      .list-style-none {
+        list-style: none;
+      }
+      .underline {
+        text-decoration: underline;
+      }
+      .truncate {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .list-reset {
+        list-style: none;
+        padding-left: 0;
+      }
+      .inline {
+        display: inline;
+      }
+      .block {
+        display: block;
+      }
+      .inline-block {
+        display: inline-block;
+      }
+      .table {
+        display: table;
+      }
+      .table-cell {
+        display: table-cell;
+      }
+      .overflow-hidden {
+        overflow: hidden;
+      }
+      .overflow-scroll {
+        overflow: scroll;
+      }
+      .overflow-auto {
+        overflow: auto;
+      }
+      .clearfix:after,
+      .clearfix:before {
+        content: " ";
+        display: table;
+      }
+      .clearfix:after {
+        clear: both;
+      }
+      .left {
+        float: left;
+      }
+      .right {
+        float: right;
+      }
+      .fit {
+        max-width: 100%;
+      }
+      .max-width-1 {
+        max-width: 24rem;
+      }
+      .max-width-2 {
+        max-width: 32rem;
+      }
+      .max-width-3 {
+        max-width: 48rem;
+      }
+      .max-width-4 {
+        max-width: 64rem;
+      }
+      .border-box {
+        box-sizing: border-box;
+      }
+      .align-baseline {
+        vertical-align: baseline;
+      }
+      .align-top {
+        vertical-align: top;
+      }
+      .align-middle {
+        vertical-align: middle;
+      }
+      .align-bottom {
+        vertical-align: bottom;
+      }
+      .m0 {
+        margin: 0;
+      }
+      .mt0 {
+        margin-top: 0;
+      }
+      .mr0 {
+        margin-right: 0;
+      }
+      .mb0 {
+        margin-bottom: 0;
+      }
+      .ml0,
+      .mx0 {
+        margin-left: 0;
+      }
+      .mx0 {
+        margin-right: 0;
+      }
+      .my0 {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      .m1 {
+        margin: 0.5rem;
+      }
+      .mt1 {
+        margin-top: 0.5rem;
+      }
+      .mr1 {
+        margin-right: 0.5rem;
+      }
+      .mb1 {
+        margin-bottom: 0.5rem;
+      }
+      .ml1,
+      .mx1 {
+        margin-left: 0.5rem;
+      }
+      .mx1 {
+        margin-right: 0.5rem;
+      }
+      .my1 {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .m2 {
+        margin: 1rem;
+      }
+      .mt2 {
+        margin-top: 1rem;
+      }
+      .mr2 {
+        margin-right: 1rem;
+      }
+      .mb2 {
+        margin-bottom: 1rem;
+      }
+      .ml2,
+      .mx2 {
+        margin-left: 1rem;
+      }
+      .mx2 {
+        margin-right: 1rem;
+      }
+      .my2 {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+      .m3 {
+        margin: 2rem;
+      }
+      .mt3 {
+        margin-top: 2rem;
+      }
+      .mr3 {
+        margin-right: 2rem;
+      }
+      .mb3 {
+        margin-bottom: 2rem;
+      }
+      .ml3,
+      .mx3 {
+        margin-left: 2rem;
+      }
+      .mx3 {
+        margin-right: 2rem;
+      }
+      .my3 {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      }
+      .m4 {
+        margin: 4rem;
+      }
+      .mt4 {
+        margin-top: 4rem;
+      }
+      .mr4 {
+        margin-right: 4rem;
+      }
+      .mb4 {
+        margin-bottom: 4rem;
+      }
+      .ml4,
+      .mx4 {
+        margin-left: 4rem;
+      }
+      .mx4 {
+        margin-right: 4rem;
+      }
+      .my4 {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+      }
+      .mxn1 {
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+      }
+      .mxn2 {
+        margin-left: -1rem;
+        margin-right: -1rem;
+      }
+      .mxn3 {
+        margin-left: -2rem;
+        margin-right: -2rem;
+      }
+      .mxn4 {
+        margin-left: -4rem;
+        margin-right: -4rem;
+      }
+      .ml-auto {
+        margin-left: auto;
+      }
+      .mr-auto,
+      .mx-auto {
+        margin-right: auto;
+      }
+      .mx-auto {
+        margin-left: auto;
+      }
+      .p0 {
+        padding: 0;
+      }
+      .pt0 {
+        padding-top: 0;
+      }
+      .pr0 {
+        padding-right: 0;
+      }
+      .pb0 {
+        padding-bottom: 0;
+      }
+      .pl0,
+      .px0 {
+        padding-left: 0;
+      }
+      .px0 {
+        padding-right: 0;
+      }
+      .py0 {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .p1 {
+        padding: 0.5rem;
+      }
+      .pt1 {
+        padding-top: 0.5rem;
+      }
+      .pr1 {
+        padding-right: 0.5rem;
+      }
+      .pb1 {
+        padding-bottom: 0.5rem;
+      }
+      .pl1 {
+        padding-left: 0.5rem;
+      }
+      .py1 {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+      .px1 {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+      .p2 {
+        padding: 1rem;
+      }
+      .pt2 {
+        padding-top: 1rem;
+      }
+      .pr2 {
+        padding-right: 1rem;
+      }
+      .pb2 {
+        padding-bottom: 1rem;
+      }
+      .pl2 {
+        padding-left: 1rem;
+      }
+      .py2 {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+      .px2 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .p3 {
+        padding: 2rem;
+      }
+      .pt3 {
+        padding-top: 2rem;
+      }
+      .pr3 {
+        padding-right: 2rem;
+      }
+      .pb3 {
+        padding-bottom: 2rem;
+      }
+      .pl3 {
+        padding-left: 2rem;
+      }
+      .py3 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+      .px3 {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+      .p4 {
+        padding: 4rem;
+      }
+      .pt4 {
+        padding-top: 4rem;
+      }
+      .pr4 {
+        padding-right: 4rem;
+      }
+      .pb4 {
+        padding-bottom: 4rem;
+      }
+      .pl4 {
+        padding-left: 4rem;
+      }
+      .py4 {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+      }
+      .px4 {
+        padding-left: 4rem;
+        padding-right: 4rem;
+      }
+      .col {
+        float: left;
+      }
+      .col,
+      .col-right {
+        box-sizing: border-box;
+      }
+      .col-right {
+        float: right;
+      }
+      .col-1 {
+        width: 8.33333%;
+      }
+      .col-2 {
+        width: 16.66667%;
+      }
+      .col-3 {
+        width: 25%;
+      }
+      .col-4 {
+        width: 33.33333%;
+      }
+      .col-5 {
+        width: 41.66667%;
+      }
+      .col-6 {
+        width: 50%;
+      }
+      .col-7 {
+        width: 58.33333%;
+      }
+      .col-8 {
+        width: 66.66667%;
+      }
+      .col-9 {
+        width: 75%;
+      }
+      .col-10 {
+        width: 83.33333%;
+      }
+      .col-11 {
+        width: 91.66667%;
+      }
+      .col-12 {
+        width: 100%;
+      }
+      @media (min-width: 40em) {
+        .sm-col {
+          float: left;
+          box-sizing: border-box;
+        }
+        .sm-col-right {
+          float: right;
+          box-sizing: border-box;
+        }
+        .sm-col-1 {
+          width: 8.33333%;
+        }
+        .sm-col-2 {
+          width: 16.66667%;
+        }
+        .sm-col-3 {
+          width: 25%;
+        }
+        .sm-col-4 {
+          width: 33.33333%;
+        }
+        .sm-col-5 {
+          width: 41.66667%;
+        }
+        .sm-col-6 {
+          width: 50%;
+        }
+        .sm-col-7 {
+          width: 58.33333%;
+        }
+        .sm-col-8 {
+          width: 66.66667%;
+        }
+        .sm-col-9 {
+          width: 75%;
+        }
+        .sm-col-10 {
+          width: 83.33333%;
+        }
+        .sm-col-11 {
+          width: 91.66667%;
+        }
+        .sm-col-12 {
+          width: 100%;
+        }
+      }
+      @media (min-width: 52em) {
+        .md-col {
+          float: left;
+          box-sizing: border-box;
+        }
+        .md-col-right {
+          float: right;
+          box-sizing: border-box;
+        }
+        .md-col-1 {
+          width: 8.33333%;
+        }
+        .md-col-2 {
+          width: 16.66667%;
+        }
+        .md-col-3 {
+          width: 25%;
+        }
+        .md-col-4 {
+          width: 33.33333%;
+        }
+        .md-col-5 {
+          width: 41.66667%;
+        }
+        .md-col-6 {
+          width: 50%;
+        }
+        .md-col-7 {
+          width: 58.33333%;
+        }
+        .md-col-8 {
+          width: 66.66667%;
+        }
+        .md-col-9 {
+          width: 75%;
+        }
+        .md-col-10 {
+          width: 83.33333%;
+        }
+        .md-col-11 {
+          width: 91.66667%;
+        }
+        .md-col-12 {
+          width: 100%;
+        }
+      }
+      @media (min-width: 64em) {
+        .lg-col {
+          float: left;
+          box-sizing: border-box;
+        }
+        .lg-col-right {
+          float: right;
+          box-sizing: border-box;
+        }
+        .lg-col-1 {
+          width: 8.33333%;
+        }
+        .lg-col-2 {
+          width: 16.66667%;
+        }
+        .lg-col-3 {
+          width: 25%;
+        }
+        .lg-col-4 {
+          width: 33.33333%;
+        }
+        .lg-col-5 {
+          width: 41.66667%;
+        }
+        .lg-col-6 {
+          width: 50%;
+        }
+        .lg-col-7 {
+          width: 58.33333%;
+        }
+        .lg-col-8 {
+          width: 66.66667%;
+        }
+        .lg-col-9 {
+          width: 75%;
+        }
+        .lg-col-10 {
+          width: 83.33333%;
+        }
+        .lg-col-11 {
+          width: 91.66667%;
+        }
+        .lg-col-12 {
+          width: 100%;
+        }
+      }
+      .flex {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+      }
+      @media (min-width: 40em) {
+        .sm-flex {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+        }
+      }
+      @media (min-width: 52em) {
+        .md-flex {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+        }
+      }
+      @media (min-width: 64em) {
+        .lg-flex {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+        }
+      }
+      .flex-column {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+      }
+      .flex-wrap {
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+      }
+      .items-start {
+        -webkit-box-align: start;
+        -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+        -ms-grid-row-align: flex-start;
+        align-items: flex-start;
+      }
+      .items-end {
+        -webkit-box-align: end;
+        -webkit-align-items: flex-end;
+        -ms-flex-align: end;
+        -ms-grid-row-align: flex-end;
+        align-items: flex-end;
+      }
+      .items-center {
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        -ms-grid-row-align: center;
+        align-items: center;
+      }
+      .items-baseline {
+        -webkit-box-align: baseline;
+        -webkit-align-items: baseline;
+        -ms-flex-align: baseline;
+        -ms-grid-row-align: baseline;
+        align-items: baseline;
+      }
+      .items-stretch {
+        -webkit-box-align: stretch;
+        -webkit-align-items: stretch;
+        -ms-flex-align: stretch;
+        -ms-grid-row-align: stretch;
+        align-items: stretch;
+      }
+      .self-start {
+        -webkit-align-self: flex-start;
+        -ms-flex-item-align: start;
+        align-self: flex-start;
+      }
+      .self-end {
+        -webkit-align-self: flex-end;
+        -ms-flex-item-align: end;
+        align-self: flex-end;
+      }
+      .self-center {
+        -webkit-align-self: center;
+        -ms-flex-item-align: center;
+        align-self: center;
+      }
+      .self-baseline {
+        -webkit-align-self: baseline;
+        -ms-flex-item-align: baseline;
+        align-self: baseline;
+      }
+      .self-stretch {
+        -webkit-align-self: stretch;
+        -ms-flex-item-align: stretch;
+        align-self: stretch;
+      }
+      .justify-start {
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+      }
+      .justify-end {
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+      }
+      .justify-center {
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+      }
+      .justify-between {
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+      .justify-around {
+        -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+        justify-content: space-around;
+      }
+      .content-start {
+        -webkit-align-content: flex-start;
+        -ms-flex-line-pack: start;
+        align-content: flex-start;
+      }
+      .content-end {
+        -webkit-align-content: flex-end;
+        -ms-flex-line-pack: end;
+        align-content: flex-end;
+      }
+      .content-center {
+        -webkit-align-content: center;
+        -ms-flex-line-pack: center;
+        align-content: center;
+      }
+      .content-between {
+        -webkit-align-content: space-between;
+        -ms-flex-line-pack: justify;
+        align-content: space-between;
+      }
+      .content-around {
+        -webkit-align-content: space-around;
+        -ms-flex-line-pack: distribute;
+        align-content: space-around;
+      }
+      .content-stretch {
+        -webkit-align-content: stretch;
+        -ms-flex-line-pack: stretch;
+        align-content: stretch;
+      }
+      .flex-auto {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        min-width: 0;
+        min-height: 0;
+      }
+      .flex-none {
+        -webkit-box-flex: 0;
+        -webkit-flex: none;
+        -ms-flex: none;
+        flex: none;
+      }
+      .order-0 {
+        -webkit-box-ordinal-group: 1;
+        -webkit-order: 0;
+        -ms-flex-order: 0;
+        order: 0;
+      }
+      .order-1 {
+        -webkit-box-ordinal-group: 2;
+        -webkit-order: 1;
+        -ms-flex-order: 1;
+        order: 1;
+      }
+      .order-2 {
+        -webkit-box-ordinal-group: 3;
+        -webkit-order: 2;
+        -ms-flex-order: 2;
+        order: 2;
+      }
+      .order-3 {
+        -webkit-box-ordinal-group: 4;
+        -webkit-order: 3;
+        -ms-flex-order: 3;
+        order: 3;
+      }
+      .order-last {
+        -webkit-box-ordinal-group: 100000;
+        -webkit-order: 99999;
+        -ms-flex-order: 99999;
+        order: 99999;
+      }
+      .relative {
+        position: relative;
+      }
+      .absolute {
+        position: absolute;
+      }
+      .fixed {
+        position: fixed;
+      }
+      .top-0 {
+        top: 0;
+      }
+      .right-0 {
+        right: 0;
+      }
+      .bottom-0 {
+        bottom: 0;
+      }
+      .left-0 {
+        left: 0;
+      }
+      .z1 {
+        z-index: 1;
+      }
+      .z2 {
+        z-index: 2;
+      }
+      .z3 {
+        z-index: 3;
+      }
+      .z4 {
+        z-index: 4;
+      }
+      .border {
+        border-style: solid;
+        border-width: 1px;
+      }
+      .border-top {
+        border-top-style: solid;
+        border-top-width: 1px;
+      }
+      .border-right {
+        border-right-style: solid;
+        border-right-width: 1px;
+      }
+      .border-bottom {
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+      }
+      .border-left {
+        border-left-style: solid;
+        border-left-width: 1px;
+      }
+      .border-none {
+        border: 0;
+      }
+      .rounded {
+        border-radius: 3px;
+      }
+      .circle {
+        border-radius: 50%;
+      }
+      .rounded-top {
+        border-radius: 3px 3px 0 0;
+      }
+      .rounded-right {
+        border-radius: 0 3px 3px 0;
+      }
+      .rounded-bottom {
+        border-radius: 0 0 3px 3px;
+      }
+      .rounded-left {
+        border-radius: 3px 0 0 3px;
+      }
+      .not-rounded {
+        border-radius: 0;
+      }
+      .hide {
+        position: absolute !important;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+        clip: rect(1px, 1px, 1px, 1px);
+      }
+      @media (max-width: 40em) {
+        .xs-hide {
+          display: none !important;
+        }
+      }
+      @media (min-width: 40em) and (max-width: 52em) {
+        .sm-hide {
+          display: none !important;
+        }
+      }
+      @media (min-width: 52em) and (max-width: 64em) {
+        .md-hide {
+          display: none !important;
+        }
+      }
+      @media (min-width: 64em) {
+        .lg-hide {
+          display: none !important;
+        }
+      }
+      .display-none {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body id="invoice">
+  <div id="screenshot">
+    <div class="p3">
+      <section>
+	  <div class="flex flex-column items-end">
+			<button type="button" onclick="myFunction()">download pdf</button>
+        </div>
+		
+		<div class="flex flex-column items-end">
+			<button type="button" onclick="screenShot()">Take ScreenShot</button>
+        </div>
+        <div class="flex flex-column items-end">
+          <h1>INVIVO LOGO</h1>
+        </div>
+      </section>
+      <hr class="blue-line" />
+      <section class="first">
+        <div class="flex items-end justify-between">
+          <h1>FEMALE ECOLOGIX&trade; REPORT</h1>
+          <p><b>REPORT: </b> S000636</p>
+        </div>
+      </section>
+      <hr />
+      <section class="second">
+        <div class="flex flex-row">
+          <div class="col-6">
+            <p><b>TEST REPORTED: $testReported</b></p>
+            <p><b>TEST RECEIVED: $testReceived</b></p>
+            <p><b>PATIENT NAME: $user_name</b></p>
+            <p><b>PATIENT DOB: $user_dob</b></p>
+            <p><b>GENDER: $gender</b></p>
+          </div>
+          <div class="col-6">
+            <p><b>REPORT STATUS: $reportStatus</b></p>
+            <p><b>COMPLETED CLINICIAN NAME: $clinicianName</b></p>
+            <p><b>ACCESSION NO: $accessionNo</b></p>
+            <p><b>SAMPLE TYPE: $sampleType</b></p>
+          </div>
+        </div>
+      </section>
+      <hr />
+      <section>
+        <p>
+          The Phylobioscience Female EcologiX&trade; profile utilises
+          quantitative real-time PCR (qRT-PCR) for analysis of vaginal
+          microbiota. qRT-PCR results are reported as quantification of
+          microbial gene of interest copies in a community sample relative to
+          endogenous gene control (i.e. gut, vaginal). qRT-PCR reactions are
+          performed using Taqman technology. The results show representative
+          numbers proportional to normalised qRT-PCR value.
+        </p>
+      </section>
+      <hr />
+      <section>
+        <div class="flex items-end">
+          <div class="col-5"><h2>Vaginal pH</h2></div>
+          <div class="col-3"><b>RESULTS:</b></div>
+          <div class="col-4"><b>PH RANGE:</b></div>
+        </div>
+      </section>
+      <hr />
+      <section>
+        <div class="flex items-center">
+          <div class="col-5">
+            <div class="flex flex-column border-left px1">
+              <p>pH</p>
+              <p>HEALTHY RANGE:</p>
+            </div>
+          </div>
+          <div class="col-1 mr1">pH</div>
+          <div class="col-5 flex flex flex-column">
+            <div class="flex">
+              <div class="col-2">3.5</div>
+              <div class="col-2">4.0</div>
+              <div class="col-2">4.5</div>
+              <div class="col-2">5.0</div>
+              <div class="col-2">5.5</div>
+              <div class="col-2">6.0</div>
+              <div class="col-2">6.5</div>
+              <div class="col-2">7.0</div>
+            </div>
+            <div class="flex graph graph1">
+              <div class="b1 col-2"></div>
+              <div class="b2 col-2"></div>
+              <div class="b3 col-2"></div>
+              <div class="b4 col-2"></div>
+              <div class="b5 col-2"></div>
+              <div class="b6 col-2"></div>
+              <div class="b7 col-2"></div>
+              <div class="b8 col-2"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr />
+      <section>
+        <div class="flex items-end">
+          <div class="col-5">
+            <h2 class="inline-block">Vaginal Health Markers</h2>
+            <h4 class="inline-block special-text">(ELISAS)</h4>
+          </div>
+          <div class="col-6"><b>RESULTS:</b></div>
+          <div class="col-1"><b>RATING:</b></div>
+        </div>
+      </section>
+      <hr />
+      <section>
+        <div class="flex items-center">
+          <div class="col-5">
+            <div class="flex flex-column border-left px1">
+              <p>IL1ß</p>
+              <p>RANGE:</p>
+            </div>
+          </div>
+          <div class="col-6 flex items-center">
+            <div class="col-2"></div>
+            <div class="col-10 flex flex-column">
+              <div class="flex flex-row items-center center">
+                <p class="col-12">&lt;220pg/ml</p>
+              </div>
+              <div class="flex flex-column graph graph2 m1">
+                <div class="flex upper">
+                  <div class="b1 border-left border-right col-6"></div>
+                  <div class="b2 border-right col-6"></div>
+                </div>
+                <div class="flex lower">
+                  <div class="b3 border-left border-right col-6"></div>
+                  <div class="b4 border-right col-6"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-1">$vaginalHealthMarkersRating</div>
+        </div>
+      </section>
+      <hr />
+      <section>
+        <p class="p2">
+          Health immune markers are quantified by using enzyme-linked
+          immunosorbent assay (ELISA) which is based on antigen-antibody
+          reactions. Please refer to the Phlyobioscience interpretive guide for
+          more details on health markers.
+        </p>
+      </section>
+      <hr />
+      <section>
+        <div class="flex items-end">
+          <div class="col-5">
+            <h2 class="inline-block">Lactobacillus</h2>
+          </div>
+          <div class="col-6"><b>RESULTS:</b></div>
+          <div class="col-1"><b>ABUNDANCE:</b></div>
+        </div>
+      </section>
+      <hr />
+      <section>
+        <div class="flex flex-column">
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Lactobacillus crispatus</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$lactobacillusCrispatus</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$lactobacillusCrispatusAmbudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Lactobacillus gasseri</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$lactobacillusGasseri</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$lactobacillusGasseriAmbudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Lactobacillus iners</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$lactobacillusIners</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$lactobacillusInersAmbudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Lactobacillus jensenii</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$lactobacillusJensenii</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$lactobacillusJenseniiAmbudance</div>
+          </div>
+        </div>
+      </section>
+      <hr />
+      <section>
+        <p class="p2">
+          Recent work has classified the vaginal microbiota into five core
+          Community State Types (CST). These groups are distinguished on whether
+          communities are dominated by Lactobacillus spp., and by the species of
+          Lactobacillus present. To learn about associations between CST and
+          clinical conditions, please refer to the Phylobioscience interpretive
+          guide.
+        </p>
+      </section>
+      <hr />
+      <section>
+        <div class="flex items-end">
+          <div class="col-5">
+            <h2 class="inline-block">Opportunistic Bacteria</h2>
+          </div>
+          <div class="col-6"><b>RESULTS:</b></div>
+          <div class="col-1"><b>ABUNDANCE:</b></div>
+        </div>
+      </section>
+      <hr />
+      <section>
+        <div class="flex flex-column">
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Atopobium vaginae</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$atopobiumVaginae</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$atopobiumVaginaeAmbudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>BVAB2</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$bVAB2</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$bVAB2Ambudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Gardnerella vaginalis</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$gardnerellaVaginalis</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$gardnerellaVaginalisAmbudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Megasphera 1</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$megasphera1</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$megasphera1Ambudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Megasphera 2</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$megasphera2</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$megasphera2Ambudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Mobiluncus curtisii</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$mobiluncusCurtisii</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$mobiluncusCurtisiiAmbudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Mobiluncus mulieris</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$mobiluncusMulieris</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$mobiluncusMulierisAmbudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Prevotella bivia</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$prevotellaBivia</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$prevotellaBiviaAmbudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Ureaplasma urealyticum</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$ureaplasmaUrealyticum</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$ureaplasmaUrealyticumAmbudance</div>
+          </div>
+        </div>
+      </section>
+      <hr />
+      <section>
+        <p class="p2">
+          Opportunistic Bacteria: Opportunistic bacteria live in symbiosis with
+          the host under normal conditions. To learn more about associations
+          between opportunistic bacteria and clinical conditions, please refer
+          to the Phylobioscience interpretive guide. &lt;DL: Microorganism is
+          not detected/below detection limit.
+        </p>
+      </section>
+      <hr />
+      <section>
+        <div class="flex items-end">
+          <div class="col-5">
+            <h2 class="inline-block">Pathobionts</h2>
+          </div>
+          <div class="col-6"><b>RESULTS:</b></div>
+          <div class="col-1"><b>ABUNDANCE:</b></div>
+        </div>
+      </section>
+      <hr />
+      <section>
+        <div class="flex flex-column">
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Enterococcus faecalis</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$enterococcusFaecalis</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$enterococcusFaecalisAmbudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Escherichia coli</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$escherichiaColi</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$escherichiaColiAmbudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Staphylococcus aureus</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$staphylococcusAureus</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$staphylococcusAureusAmbudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Streptococcus agalactiae</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$streptococcusAgalactiae</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$streptococcusAgalactiaeAmbudance</div>
+          </div>
+        </div>
+      </section>
+      <hr />
+      <section>
+        <p class="p2">
+          Pathobionts: Pathobionts are enteric bacteria that have entered a new
+          environment such as the genital tract. To learn about associations
+          between pathobiont and clinical conditions, please refer to the
+          Phylobioscience interpretive guide. &lt;DL: Microorganism is not
+          detected/below detection limit.
+        </p>
+      </section>
+      <hr />
+      <section>
+        <div class="flex items-end">
+          <div class="col-5">
+            <h2 class="inline-block">Opportunistic Fungi</h2>
+          </div>
+          <div class="col-6"><b>RESULTS:</b></div>
+          <div class="col-1"><b>ABUNDANCE:</b></div>
+        </div>
+      </section>
+      <hr />
+      <section>
+        <div class="flex flex-column">
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Candida albicans</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$candidaAlbicans</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$candidaAlbicansAmbudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Candida glabrata</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$candidaGlabrata</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$candidaGlabrataAmbudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Candida krusei</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$candidaKrusei</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$candidaKruseiAmbudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Candida parapsilosis</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$candidaParapsilosis</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$candidaParapsilosisAmbudance</div>
+          </div>
+          <div class="flex items-center">
+            <div class="col-5">
+              <div class="flex flex-column border-left px1">
+                <p>Candida tropicalis</p>
+              </div>
+            </div>
+            <div class="col-6 flex items-center">
+              <div class="col-2">$candidaTropicalis</div>
+              <div class="col-10 flex flex-column">
+                <div class="flex flex-row items-center center mx1">
+                  <p class="flex-auto col-2">0-4</p>
+                  <p class="flex-auto col-2">5-8</p>
+                  <p class="flex-auto col-2">9-12</p>
+                  <p class="flex-auto col-2">13-16</p>
+                  <p class="flex-auto col-2">17-20</p>
+                </div>
+                <div class="flex flex-column graph graph2 m1">
+                  <div class="flex upper">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                  <div class="flex lower">
+                    <div class="border-left border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                    <div class="border-right flex-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1">$candidaTropicalisAmbudance</div>
+          </div>
+        </div>
+      </section>
+      <hr />
+      <section>
+        <p class="p2">
+          Opportunistic Fungi: Opportunistic fungi may induce pathogenesis under
+          special conditions in the genital tract. These conditions may promote
+          overgrowth of these species and transition to pathogenic growth mode
+          (hyphae). To learn more about associations between opportunistic fungi
+          and clinical conditions, please refer to the Phylobioscience
+          interpretive guide. &lt;DL: Microorganism is not detected/below
+          detection limit.
+        </p>
+      </section>
+      <hr />
+      <section>
+        <p class="p2">
+          Test Information: The Female EcologiX&trade; profile measures the
+          composition of vaginal microbiota species and host immune markers
+          using modern and culture-independent technologies. Results of this
+          test cannot be used for diagnosis of disease or health conditions.
+          Detection or lack of detection of microorganism or immune markers in
+          this test, does not imply diagnosis of disease or clinical condition.
+          The Female EcologiX&trade; test should not replace routine
+          examinations with doctors and healthcare professionals i.e. smear
+          tests.
+        </p>
+      </section>
+      <hr />
+      <section class="flex">
+        <div class="col-3 flex flex-column items-start">
+          <h1>INVIVO LOGO</h1>
+        </div>
+        <div class="col-6">
+          <small
+            ><b>Disclaimer</b>: This test was developed, and its performance
+            characteristics determined by Phylo Bioscience. This test is not
+            intended for use by consumers or physicians as a means to cure,
+            treat, prevent, diagnose or mitigate any disease or other medical
+            condition. The information contained in this document is in no way
+            to be taken as prescriptive nor to replace the physicians duty of
+            care and personalised care practices.
+          </small>
+        </div>
+        <div class="col-3 flex flex-column">
+          <div class="flex flex-column items-end">
+            <p>Lab Director:</p>
+            <p>Jaspal Patil, PhD</p>
+          </div>
+          <div class="flex flex-column items-end p1">
+            <h4>CARE QUALITY LOGO</h4>
+          </div>
+        </div>
+      </section>
+    </div>
+	</div>
+	
+<div id="newCanvas"></div>
+  </body>
+</html>

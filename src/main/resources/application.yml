@@ -1,0 +1,60 @@
+server:
+  servlet:
+    context-path: "/lims"
+  port: 8383
+
+
+spring:
+  #   profiles: test
+  #   name: test-YAML
+  #   environment: dev
+  datasource:
+    platform: "postgres"
+    url: jdbc:postgresql://3.141.111.88:5432/telereport
+    username: skulluser
+    password: skulluser
+    driver-class-name: org.postgresql.Driver
+    #url: jdbc:postgresql://albot-dev-db.c3jpqsqkqbuy.us-east-2.rds.amazonaws.com:5432/ventilator
+    #username: albot_dev
+    #password: albot123
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    show_sql: true
+    format_sql: true
+    hibernate:
+      ddl-auto: update
+logging:
+  file: logs/lims-debug.log
+  pattern:
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    org.springframework.web: ERROR
+    io.albot: DEBUG
+    org.hibernate: ERROR
+
+sns_config:
+  awsAccessKeyId: "AKIAZ3EIOJXZSP4U73VK"
+  secretKey: "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"
+  region: "us-east-2"
+
+aws-s3-details:
+  bucket: microbiome-s3
+
+limstoken:
+  username: limstoken
+  password: lims@123
+  tokenurl: http://venti-dev.albot.io:8080/auth/realms/ventilator/protocol/openid-connect/token
+
+apiurl:
+  userapi: https://albot-common-apis.albot.io/user/common/v1/api/user/
+
+searchtype:
+  sample: SAMPLES
+  plate: PLATES
+  protocol: PROTOCOLS
+  all: ALL
+
+sortfield:
+  samplefield: submittedSampleName
+  platefield: platesName
+  protocolfield: protocolName
